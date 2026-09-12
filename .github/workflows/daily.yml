@@ -1,0 +1,31 @@
+name: MY KUSTOM Morning Briefing
+
+on:
+  schedule:
+    - cron: "0 14 * * 1-6"   # adjust to your timezone
+  workflow_dispatch: {}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install requests resend   # ← added "resend"
+
+      - name: Run briefing
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GNEWS_API_KEY:  ${{ secrets.GNEWS_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}   # ← renamed
+        run: |
+          sed -i "s/YOUR_GEMINI_KEY/$GEMINI_API_KEY/" morning_briefing.py
+          sed -i "s/YOUR_GNEWS_KEY/$GNEWS_API_KEY/" morning_briefing.py
+          sed -i "s/YOUR_RESEND_KEY/$RESEND_API_KEY/" morning_briefing.py   # ← renamed
+          python morning_briefing.py   
+        
