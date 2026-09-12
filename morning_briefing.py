@@ -9,9 +9,9 @@ GNEWS_API_KEY  = "YOUR_GNEWS_KEY"
 RESEND_API_KEY = "YOUR_RESEND_KEY"
 YOUR_EMAIL     = "csclab51@gmail.com"
 SENDER_EMAIL   = "onboarding@resend.dev" # ← Resend's default test sender
-CITY           = "New York"
-LATITUDE       = 40.7128
-LONGITUDE      = -74.0060
+CITY           = "CDMX"
+LATITUDE       = 19.4326
+LONGITUDE      = -99.1332
 # ───────────────────────────────────────────────────────────
 
 # 1) Fetch weather (Open-Meteo – no key needed)
@@ -40,10 +40,10 @@ def get_news():
 # 3) Ask Gemini to write the briefing
 def get_briefing(weather, headlines):
     prompt = (
-        f"Write a short, friendly morning briefing (max 6 sentences) for a resident of {CITY}. "
+        f"Write a short, friendly morning briefing (in bullets format with max 5 lines) for a resident of {CITY}. "
         f"Today's weather: high {weather['high_f']}°F, low {weather['low_f']}°F, "
         f"rain chance {weather['rain_chance']}%. "
-        f"Today (DATE) top news headlines: {json.dumps(headlines)}. "
+        f"Top news headlines in politics and entertainment for today {DATE} : {json.dumps(headlines)}. "
         f"Be concise, warm, and practical. No preamble."
     )
     url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
@@ -81,6 +81,6 @@ if __name__ == "__main__":
     print(f"  Done: {briefing[:80]}…")
 
     print("Sending email…")
-    status = send_email("☀️ MY AI Morning Briefing", briefing)
+    status = send_email("☀️ MY AI Morning Briefing for CDMX", briefing)
     print(f"  Email sent (HTTP {status})")
 
