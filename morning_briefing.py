@@ -7,7 +7,7 @@ import resend  # ← new: Resend Python SDK
 GEMINI_API_KEY = "YOUR_GEMINI_KEY"
 GNEWS_API_KEY  = "YOUR_GNEWS_KEY"
 RESEND_API_KEY = "YOUR_RESEND_KEY"
-YOUR_EMAIL     = "csclab51@gmail.com"
+YOUR_EMAIL     = ["csclab51@gmail.com", "csclab51@protonmail.com"]
 SENDER_EMAIL   = "onboarding@resend.dev" # ← Resend's default test sender
 CITY           = "CDMX"
 LATITUDE       = 19.4326
