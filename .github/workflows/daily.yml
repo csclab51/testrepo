@@ -3,7 +3,7 @@ name: MY KUSTOM Morning Briefing
 on:
   schedule:
     - cron: "0 14 * * 0-6"   # adjust to your timezone
-  
+    workflow_dispatch: {}
 
 jobs:
   run:
