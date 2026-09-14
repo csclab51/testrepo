@@ -43,7 +43,7 @@ def get_briefing(weather, headlines):
         f"Write a short, friendly morning briefing (in bullets format with max 5 lines) for a resident of {CITY}. "
         f"Today's weather: high {weather['high_f']}°F, low {weather['low_f']}°F, "
         f"rain chance {weather['rain_chance']}%. "
-        f"Top news headlines in politics and entertainment for today {DATE} : {json.dumps(headlines)}. "
+        f"Top news headlines in politics and entertainment for today : {json.dumps(headlines)}. "
         f"Be concise, warm, and practical. No preamble."
     )
     url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
